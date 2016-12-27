@@ -22,6 +22,7 @@ class Review(BaseModel):
 	comment = TextField(default='')
 	created_at = DateTimeField(default=datetime.datetime.now)
 
+
 def initialize():
 	DATABASE.connect()
 	DATABASE.create_tables([Course, Review], safe=True)
