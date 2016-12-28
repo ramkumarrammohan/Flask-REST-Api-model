@@ -32,6 +32,23 @@ class CourseList(Resource):
 		return jsonify({'courses': [{'title': 'Python Basics'}]})
 
 class Course(Resource):
+	def __init__(self):
+		self.reqparse = reqparse.RequestParser()
+		self.reqparse.add_argument(
+			'title',
+			required=True,
+			help='No course title provided',
+			location=['form', 'json']
+		)
+		self.reqparse.add_argument(
+			'url',
+			required=True,
+			help='No course url provided',
+			location=['form', 'json'],
+			type=inputs.url
+		)
+		super(Course, self).__init__()
+
 	def get(self, id):
 		return jsonify({'title': 'Python Basics'})
 
